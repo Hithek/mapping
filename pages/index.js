@@ -79,34 +79,6 @@ export default function Home() {
             <button onClick={fetchPlants} className="btn-refresh">
               🔄 Refresh Now
             </button>
-
-            <div className="plant-list">
-              <h3>Detected Plants</h3>
-              <div className="plants-scroll">
-                {plants.length === 0 ? (
-                  <p className="no-plants">No plants detected yet</p>
-                ) : (
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>X</th>
-                        <th>Y</th>
-                        <th>Quality</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {plants.map((plant, idx) => (
-                        <tr key={idx} className={plant.q === 1 ? 'good' : 'bad'}>
-                          <td>{plant.x}</td>
-                          <td>{plant.y}</td>
-                          <td>{plant.q === 1 ? '✓ Good' : '✗ Bad'}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </main>
