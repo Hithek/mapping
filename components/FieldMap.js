@@ -25,13 +25,13 @@ export default function FieldMap({ plants }) {
 
     const ctx = canvas.getContext('2d');
     
-    // Clear canvas
-    ctx.fillStyle = '#fff';
+    // Clear canvas with yellow background
+    ctx.fillStyle = '#FFEB3B';
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Draw grid
-    ctx.strokeStyle = '#ccc';
-    ctx.lineWidth = 1;
+    // Draw bold grid lines
+    ctx.strokeStyle = '#FF9800';
+    ctx.lineWidth = 2;
     for (let i = 0; i <= CANVAS_WIDTH; i += GRID_SIZE) {
       ctx.beginPath();
       ctx.moveTo(i, 0);
@@ -43,24 +43,46 @@ export default function FieldMap({ plants }) {
       ctx.lineTo(CANVAS_WIDTH, i);
       ctx.stroke();
     }
+    
+    // Draw border
+    ctx.strokeStyle = '#FF6F00';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Draw grid labels
-    ctx.fillStyle = '#999';
-    ctx.font = '10px Arial';
+    ctx.fillStyle = '#FF6F00';
+    ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
     for (let i = 0; i <= CANVAS_WIDTH; i += GRID_SIZE * 2) {
-      ctx.fillText(i / GRID_SIZE, i - 5, 15);
+      ctx.fillText(i / GRID_SIZE, i - 3, 3);
     }
 
-    // Draw plants
+    // Draw plants with better styling
     plants.forEach((plant) => {
       const x = (plant.x * GRID_SIZE) + GRID_SIZE / 2;
       const y = (plant.y * GRID_SIZE) + GRID_SIZE / 2;
 
-      // Plant circle
-      ctx.fillStyle = plant.q === 1 ? '#00aa00' : '#ff0000';
+      // Plant circle with glow effect
+      if (plant.q === 1) {
+        // Good plant - green glow
+        ctx.fillStyle = 'rgba(0, 200, 0, 0.3)';
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#00C800';
+      } else {
+        // Bad plant - red glow
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
+        ctx.beginPath();
+        ctx.arc(x, y, 15, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#FF1744';
+      }
+
+      // Main plant circle
       ctx.beginPath();
-      ctx.arc(x, y, 8, 0, Math.PI * 2);
+      ctx.arc(x, y, 10, 0, Math.PI * 2);
       ctx.fill();
 
       // Border
@@ -70,9 +92,10 @@ export default function FieldMap({ plants }) {
 
       // Coordinates text
       ctx.fillStyle = '#000';
-      ctx.font = 'bold 9px Arial';
+      ctx.font = 'bold 10px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText(`${plant.x},${plant.y}`, x, y + 15);
+      ctx.textBaseline = 'middle';
+      ctx.fillText(`${plant.x},${plant.y}`, x, y + 18);
     });
   }, [plants]);
 
