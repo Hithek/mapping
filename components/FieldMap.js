@@ -45,12 +45,12 @@ export default function FieldMap({ plants }) {
     }
     
     // Draw border
-    ctx.strokeStyle = '#8B0000';
+    ctx.strokeStyle = '#1B4332';
     ctx.lineWidth = 3;
     ctx.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Draw grid labels
-    ctx.fillStyle = '#8B0000';
+    ctx.fillStyle = '#1B4332';
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'top';
