@@ -25,12 +25,12 @@ export default function FieldMap({ plants }) {
 
     const ctx = canvas.getContext('2d');
     
-    // Clear canvas with yellow background
-    ctx.fillStyle = '#FFEB3B';
+    // Clear canvas with cream background
+    ctx.fillStyle = '#F5F1E8';
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // Draw bold grid lines
-    ctx.strokeStyle = '#FF9800';
+    // Draw bold grid lines (grey)
+    ctx.strokeStyle = '#808080';
     ctx.lineWidth = 2;
     for (let i = 0; i <= CANVAS_WIDTH; i += GRID_SIZE) {
       ctx.beginPath();
@@ -45,12 +45,12 @@ export default function FieldMap({ plants }) {
     }
     
     // Draw border
-    ctx.strokeStyle = '#FF6F00';
+    ctx.strokeStyle = '#8B0000';
     ctx.lineWidth = 3;
     ctx.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // Draw grid labels
-    ctx.fillStyle = '#FF6F00';
+    ctx.fillStyle = '#8B0000';
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'top';
